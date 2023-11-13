@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.content{
+  min-height:20rem;
+  width:40rem;
+  background-color:white;
+  margin:2rem;
+  border-radius:20px;
+  color:black;
+  box-shadow:0px 2px 10px rgba(143, 141, 141, 0.324);
+  font-weight: 500;
+  padding:2rem;
+}
+
+.btn{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+}
