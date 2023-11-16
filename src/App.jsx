@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import regeneratorRuntime from 'regenerator-runtime/runtime'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import './App.css'
-
+import Openai from './Components/Openai';
+import Markdown from 'markdown-to-jsx'
 
 function App() {
   const {
@@ -12,21 +13,39 @@ function App() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  const [sentence,setSentence] = useState('');
+  const [active,setActive] = useState(false);
+  
+  async function handleClick() {
+    var t = transcript
+    try {
+      const completedSentence = await Openai(t);
+      setSentence(completedSentence);
+      setActive(true);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   if (!browserSupportsSpeechRecognition) {
     return <p>Your browser does not support it</p>;
   }
-  console.log(transcript)
   const startListening = () => SpeechRecognition.startListening({ continuous: true, language:"en-IN" });
 
   return (
     <>
+    <section>
       <div className="heading">
       <h1>NotesTaker</h1>
       </div>
+    </section>
+    <section>
       <div className="content">
         <p>{listening?'listening':'not listening'}</p>
         <p> {transcript}</p>
       </div>
+    </section>
+    <section>
+
       <div className="btn">
         <button onClick={startListening} className="start">
           Start Listening
@@ -34,11 +53,18 @@ function App() {
         <button onClick = {SpeechRecognition.stopListening} className="stop">
           Stop Listening
         </button>
-        <button onClick={resetTranscript} className="stop">
-          Reset
+        <button onClick={handleClick} className="stop">
+          Generate Summary
         </button>
       </div>
-    </>
+    </section>
+    <section className={active?"flex":"none"}>
+      <h2 >Generated Summary</h2>
+      <div className="summary">
+        <Markdown>{sentence}</Markdown>
+      </div>
+    </section>
+    </> 
   )
 }
 
