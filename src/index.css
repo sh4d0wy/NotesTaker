@@ -5,8 +5,7 @@
 
   color-scheme: light dark;
   color:#10e17c;
-  background-color: white;
-
+  background: linear-gradient(#0E172B,#070810);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -43,9 +42,10 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color:#10e17c;;
+  background-color:#0E172B;
   cursor: pointer;
   transition: ease-in-out 0.25s;
+  box-shadow: 0px 0px 2px rgba(130, 134, 162, 0.539);
 }
 button:hover {
   transform:scale(1.05);

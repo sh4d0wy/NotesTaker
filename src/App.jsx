@@ -59,8 +59,10 @@ function App() {
       </div>
     </section>
     <section className={active?"flex":"none"}>
-      <h2 >Generated Summary</h2>
-      <div className="summary">
+    <div className="heading">
+      <h1>Summary</h1>
+      </div>
+      <div className="content">
         <Markdown>{sentence}</Markdown>
       </div>
     </section>
